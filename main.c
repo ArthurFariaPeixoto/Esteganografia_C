@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h> // malloc
 
-#define MAX_ELEMENTOS 11
+#define MAX_ELEMENTOS 10
 
 struct pilha {
     char elementos[MAX_ELEMENTOS];
@@ -12,11 +12,17 @@ struct pilha {
 
 struct pilha *criar() {
     struct pilha *p;
+    int i;
     p = malloc(sizeof(struct pilha));
-    if (!p)
-        exit(1); // Erro ao alocar memoria
-    p->topo = 0;
 
+    if (!p) {
+        exit(1); // Erro ao alocar memoria
+    }
+    for(i=0; i<MAX_ELEMENTOS; i++){
+        p->elementos[i]=NULL;
+        p->codigoInt[i]=NULL;
+    }
+    p->topo = 0;
     return p;
 }
 
@@ -51,7 +57,6 @@ int main() {
     for(i=0; i<tamanho; i++){
         scanf("%c", &frase[i]);
         empilhar(minha_pilha, frase[i]);
-
     }
 
     printf("Codigo escrito: %s\n", frase);
