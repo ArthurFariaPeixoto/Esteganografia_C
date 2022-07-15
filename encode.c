@@ -91,14 +91,16 @@ int main() {
         scanf("%c", &frase[i]);
         empilhar(minha_pilha, frase[i]);
     }
-    converterBinario(minha_pilha);
 
     printf("\nPilha com %d posicoes\n", tamanho_pilha(minha_pilha));
 
     printf("\nCodigo escrito: %s\n", frase);
     imprimir(minha_pilha);
 
-    printf("\nDesempilhando elementos \n");
+    printf("\nCodigo a ser inserido na imagem: \n");
+    converterBinario(minha_pilha);
+
+    printf("\n\nDesempilhando elementos \n");
     for (i = 0; i<tamanho; i++) {
         printf("%c ", desempilhar(minha_pilha));
     }
