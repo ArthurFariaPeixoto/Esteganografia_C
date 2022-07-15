@@ -7,7 +7,6 @@ struct pilha {
     char elementos[MAX_ELEMENTOS];
     int topo;
     int codigoInt[MAX_ELEMENTOS];
-
 };
 
 struct pilha *criar() {
@@ -58,8 +57,8 @@ void imprimir(struct pilha *p){
 int main() {
     struct pilha *minha_pilha;
     int tamanho=11, i;
-    char frase[tamanho];
-
+    char frase[12];
+    frase[11]='\0';
     minha_pilha = criar();
     printf("Digite o codigo a ser inserido na imagem: ");
     for(i=0; i<tamanho; i++){
