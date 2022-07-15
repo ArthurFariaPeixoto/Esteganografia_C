@@ -21,6 +21,7 @@ struct pilha *criar() {
     for(i=0; i<MAX_ELEMENTOS; i++){
         p->elementos[i]=NULL;
         p->codigoInt[i]=NULL;
+        p->topo = NULL;
     }
     p->topo = 0;
     return p;
@@ -47,13 +48,20 @@ void destruir(struct pilha *p) {
     free(p);
 }
 
+void imprimir(struct pilha *p){
+    int i;
+    for(i=0; i<MAX_ELEMENTOS; i++){
+        printf("Letra: %c, codigo da letra: %d\n", p->elementos[i], p->codigoInt[i]);
+    }
+}
+
 int main() {
     struct pilha *minha_pilha;
     int tamanho=11, i;
     char frase[tamanho];
 
     minha_pilha = criar();
-
+    printf("Digite o codigo a ser inserido na imagem: ");
     for(i=0; i<tamanho; i++){
         scanf("%c", &frase[i]);
         empilhar(minha_pilha, frase[i]);
@@ -61,9 +69,7 @@ int main() {
     printf("\nPilha com %d posicoes\n", tamanho_pilha(minha_pilha));
 
     printf("\nCodigo escrito: %s\n", frase);
-    for(i=0; i<tamanho; i++){
-        printf("Letra: %c, codigo da letra: %d\n", frase[i], minha_pilha->codigoInt[i]);
-    }
+    imprimir(minha_pilha);
 
     printf("\nDesempilhando elementos \n");
     for (i = 0; i<tamanho; i++) {
