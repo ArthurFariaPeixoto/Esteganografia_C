@@ -7,6 +7,7 @@ struct pilha {
     char elementos[MAX_ELEMENTOS];
     int topo;
     int codigoInt[MAX_ELEMENTOS];
+    int codigoBinario[MAX_ELEMENTOS*8]
 };
 
 struct pilha *criar() {
@@ -54,6 +55,28 @@ void imprimir(struct pilha *p){
     }
 }
 
+void converterBinario(struct pilha *p){
+    int num, aux,i;
+    int binario[8];
+
+    for(i=0;i<10;i++){
+        num=p->codigoInt[i];
+        for (aux = 7; aux >= 0; aux--) {
+
+            if (num % 2 == 0) {
+                binario[aux] = 0;
+                num = num / 2;
+            } else {
+                binario[aux] = 1;
+                num = num / 2;
+            }
+        }
+        for (aux = 0; aux < 8; aux++) {
+            printf("%d", binario[aux]);
+        }
+    }
+}
+
 int main() {
     struct pilha *minha_pilha;
     int tamanho=10, i;
@@ -68,6 +91,8 @@ int main() {
         scanf("%c", &frase[i]);
         empilhar(minha_pilha, frase[i]);
     }
+    converterBinario(minha_pilha);
+
     printf("\nPilha com %d posicoes\n", tamanho_pilha(minha_pilha));
 
     printf("\nCodigo escrito: %s\n", frase);
