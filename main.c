@@ -43,7 +43,7 @@ void destruir(struct pilha *p) {
 
 int main() {
     struct pilha *minha_pilha;
-    int tamanho=5, i;
+    int tamanho=11, i;
     char frase[tamanho];
 
     minha_pilha = criar();
