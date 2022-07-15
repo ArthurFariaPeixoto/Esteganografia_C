@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h> // malloc
 
-#define MAX_ELEMENTOS 11
+#define MAX_ELEMENTOS 10
 
 struct pilha {
     char elementos[MAX_ELEMENTOS];
@@ -56,10 +56,13 @@ void imprimir(struct pilha *p){
 
 int main() {
     struct pilha *minha_pilha;
-    int tamanho=11, i;
-    char frase[12];
-    frase[11]='\0';
+    int tamanho=10, i;
+    char frase[tamanho+1];
+    frase[tamanho]='\0';
+
+
     minha_pilha = criar();
+
     printf("Digite o codigo a ser inserido na imagem: ");
     for(i=0; i<tamanho; i++){
         scanf("%c", &frase[i]);
