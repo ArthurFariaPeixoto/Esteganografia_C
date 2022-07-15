@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h> // malloc
 
-#define MAX_ELEMENTOS 10
+#define MAX_ELEMENTOS 11
 
 struct pilha {
     char elementos[MAX_ELEMENTOS];
@@ -58,8 +58,9 @@ int main() {
         scanf("%c", &frase[i]);
         empilhar(minha_pilha, frase[i]);
     }
+    printf("\nPilha com %d posicoes\n", tamanho_pilha(minha_pilha));
 
-    printf("Codigo escrito: %s\n", frase);
+    printf("\nCodigo escrito: %s\n", frase);
     for(i=0; i<tamanho; i++){
         printf("Letra: %c, codigo da letra: %d\n", frase[i], minha_pilha->codigoInt[i]);
     }
