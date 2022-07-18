@@ -7,7 +7,7 @@ struct pilha {
     char elementos[MAX_ELEMENTOS];
     int topo;
     int codigoInt[MAX_ELEMENTOS];
-    int codigoBinario[MAX_ELEMENTOS*8]
+    char codigoBinario[MAX_ELEMENTOS*8];
 };
 
 struct pilha *criar() {
@@ -22,6 +22,7 @@ struct pilha *criar() {
         p->elementos[i]=NULL;
         p->codigoInt[i]=NULL;
         p->topo = NULL;
+        p->codigoBinario[i] = NULL;
     }
     p->topo = 0;
     return p;
@@ -48,16 +49,25 @@ void destruir(struct pilha *p) {
     free(p);
 }
 
-void imprimir(struct pilha *p){
+void imprimir(struct pilha *p, int opcao){
     int i;
-    for(i=0; i<MAX_ELEMENTOS; i++){
-        printf("Letra: %c, codigo da letra: %d\n", p->elementos[i], p->codigoInt[i]);
+    if(opcao==1){
+        for(i=0; i<MAX_ELEMENTOS; i++){
+            printf("Letra: %c, codigo da letra: %d\n", p->elementos[i], p->codigoInt[i]);
+        }
+    }
+    else if(opcao==2){
+        for(i=0; i<MAX_ELEMENTOS; i++){
+            printf("Letra: %c, codigo da letra: %d, ", p->elementos[i], p->codigoInt[i]);
+            printf("valor em binario da letra: %c\n", p->codigoBinario[i]);
+        }
     }
 }
 
 void converterBinario(struct pilha *p){
     int num, aux,i;
     int binario[8];
+    char binarioTexto[8];
 
     for(i=0;i<10;i++){
         num=p->codigoInt[i];
@@ -72,8 +82,11 @@ void converterBinario(struct pilha *p){
             }
         }
         for (aux = 0; aux < 8; aux++) {
-            printf("%d", binario[aux]);
+            binarioTexto[aux]= binario[aux]+'0';//preenche o vetor com os digitos binarios
+            //printf("%d", binario[aux]);
         }
+        printf("%s", binarioTexto);//imprime o valor do caractere em binario
+
     }
 }
 
@@ -95,10 +108,13 @@ int main() {
     printf("\nPilha com %d posicoes\n", tamanho_pilha(minha_pilha));
 
     printf("\nCodigo escrito: %s\n", frase);
-    imprimir(minha_pilha);
+    imprimir(minha_pilha, 1);
 
     printf("\nCodigo a ser inserido na imagem: \n");
     converterBinario(minha_pilha);
+
+//    printf("\n\nInformacoes finais:\n");
+//    imprimir(minha_pilha, 2);
 
     printf("\n\nDesempilhando elementos \n");
     for (i = 0; i<tamanho; i++) {
